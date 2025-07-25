@@ -1,0 +1,126 @@
+@model AcmeBankApp.Core.Models.LoginModel
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    <div class="col-md-8">
+        <section id="loginForm">
+            <!-- Legacy form without CSRF protection -->
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                <h4>Use your Acme Bank account to log in.</h4>
+                <hr />
+                
+                <!-- Legacy: No @Html.AntiForgeryToken() -->
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                
+                <div class="form-group">
+                    @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <div class="checkbox">
+                            @Html.CheckBoxFor(m => m.RememberMe)
+                            @Html.LabelFor(m => m.RememberMe)
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Log in" class="btn btn-primary" />
+                    </div>
+                </div>
+                
+                <p>
+                    @Html.ActionLink("Register as a new user", "Register")
+                </p>
+            }
+        </section>
+    </div>
+    
+    <div class="col-md-4">
+        <section id="socialLoginForm">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h4>Legacy Login Information</h4>
+                </div>
+                <div class="panel-body">
+                    <p><strong>Demo Credentials:</strong></p>
+                    <ul>
+                        <li>Username: <code>demo</code></li>
+                        <li>Password: <code>password123</code></li>
+                    </ul>
+                    <p class="text-warning">
+                        <small>
+                            <!-- Legacy: Exposing configuration in UI -->
+                            Max failed attempts: @ViewBag.MaxFailedAttempts<br/>
+                            Session timeout: 60 minutes
+                        </small>
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Legacy: Expose system info on login page -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4>System Status</h4>
+                </div>
+                <div class="panel-body">
+                    <p><small>
+                        Server Time: @DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")<br/>
+                        Environment: Production<br/>
+                        Framework: .NET 4.8
+                    </small></p>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    
+    <!-- Legacy: Inline JavaScript with potential XSS -->
+    <script>
+        $(document).ready(function() {
+            // Legacy: Client-side validation bypass possible
+            $('#loginForm').submit(function() {
+                var username = $('#UserName').val();
+                var password = $('#Password').val();
+                
+                // Legacy: Log credentials to console (security issue)
+                console.log('Login attempt for user: ' + username);
+                
+                if (!username || !password) {
+                    alert('Please enter both username and password');
+                    return false;
+                }
+                
+                return true;
+            });
+            
+            // Legacy: Demo credentials auto-fill
+            $('#demo-login').click(function() {
+                $('#UserName').val('demo');
+                $('#Password').val('password123');
+            });
+        });
+    </script>
+}

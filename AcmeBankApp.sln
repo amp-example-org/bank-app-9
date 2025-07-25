@@ -1,0 +1,49 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29324.140
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcmeBankApp.Web", "AcmeBankApp.Web\AcmeBankApp.Web.csproj", "{E1B2C3D4-5A6B-7C8D-9E0F-123456780ABC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcmeBankApp.Data", "AcmeBankApp.Data\AcmeBankApp.Data.csproj", "{F2C3D4E5-6B7C-8D9E-0F12-234567890BCD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcmeBankApp.Core", "AcmeBankApp.Core\AcmeBankApp.Core.csproj", "{F3D4E5F6-7C8D-9E0F-1234-56789ABCDEF0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcmeBankApp.Tests", "AcmeBankApp.Tests\AcmeBankApp.Tests.csproj", "{A4E5F6F7-8D9E-0F12-3456-789ABCDEF012}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build Scripts", "Build Scripts", "{BUILD001-1234-5678-9ABC-DEF012345678}"
+	ProjectSection(SolutionItems) = preProject
+		BuildScripts\BuildAngular.bat = BuildScripts\BuildAngular.bat
+		BuildScripts\Deploy.ps1 = BuildScripts\Deploy.ps1
+		BuildScripts\README.md = BuildScripts\README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E1B2C3D4-5A6B-7C8D-9E0F-123456780ABC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1B2C3D4-5A6B-7C8D-9E0F-123456780ABC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1B2C3D4-5A6B-7C8D-9E0F-123456780ABC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1B2C3D4-5A6B-7C8D-9E0F-123456780ABC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2C3D4E5-6B7C-8D9E-0F12-234567890BCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2C3D4E5-6B7C-8D9E-0F12-234567890BCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2C3D4E5-6B7C-8D9E-0F12-234567890BCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2C3D4E5-6B7C-8D9E-0F12-234567890BCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3D4E5F6-7C8D-9E0F-1234-56789ABCDEF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3D4E5F6-7C8D-9E0F-1234-56789ABCDEF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3D4E5F6-7C8D-9E0F-1234-56789ABCDEF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3D4E5F6-7C8D-9E0F-1234-56789ABCDEF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4E5F6F7-8D9E-0F12-3456-789ABCDEF012}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4E5F6F7-8D9E-0F12-3456-789ABCDEF012}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4E5F6F7-8D9E-0F12-3456-789ABCDEF012}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4E5F6F7-8D9E-0F12-3456-789ABCDEF012}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {12345678-1234-5678-9ABC-DEF012345678}
+	EndGlobalSection
+EndGlobal

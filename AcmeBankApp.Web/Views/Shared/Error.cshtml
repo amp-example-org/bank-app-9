@@ -1,0 +1,98 @@
+@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Error";
+}
+
+<h1 class="text-danger">Error.</h1>
+<h2 class="text-danger">An error occurred while processing your request.</h2>
+
+<!-- Legacy: Expose detailed error information (security issue) -->
+@if (Model != null && ViewBag.Environment != "Production")
+{
+    <div class="panel panel-danger">
+        <div class="panel-heading">
+            <h3 class="panel-title">Error Details (Debug Mode)</h3>
+        </div>
+        <div class="panel-body">
+            <h4>Exception Type:</h4>
+            <p>@Model.Exception.GetType().Name</p>
+            
+            <h4>Message:</h4>
+            <p>@Model.Exception.Message</p>
+            
+            <h4>Controller:</h4>
+            <p>@Model.ControllerName</p>
+            
+            <h4>Action:</h4>
+            <p>@Model.ActionName</p>
+            
+            @if (Model.Exception.StackTrace != null)
+            {
+                <h4>Stack Trace:</h4>
+                <pre style="background: #f5f5f5; padding: 10px; border: 1px solid #ddd;">@Model.Exception.StackTrace</pre>
+            }
+            
+            @if (Model.Exception.InnerException != null)
+            {
+                <h4>Inner Exception:</h4>
+                <p><strong>Type:</strong> @Model.Exception.InnerException.GetType().Name</p>
+                <p><strong>Message:</strong> @Model.Exception.InnerException.Message</p>
+                
+                @if (Model.Exception.InnerException.StackTrace != null)
+                {
+                    <pre style="background: #f0f0f0; padding: 10px; border: 1px solid #ccc;">@Model.Exception.InnerException.StackTrace</pre>
+                }
+            }
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-info">
+        <h4>What happened?</h4>
+        <p>We're sorry, but something went wrong while processing your request.</p>
+        <p>Our technical team has been notified and is working to resolve the issue.</p>
+        
+        <h4>What can you do?</h4>
+        <ul>
+            <li>Try refreshing the page</li>
+            <li>Go back to the <a href="@Url.Action("Index", "Home")">home page</a></li>
+            <li>Contact our support team if the problem persists</li>
+        </ul>
+    </div>
+}
+
+<!-- Legacy: Additional system information -->
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Request Information</h3>
+    </div>
+    <div class="panel-body">
+        <p><strong>Time:</strong> @DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")</p>
+        <p><strong>User:</strong> @(Session["UserName"] ?? "Anonymous")</p>
+        <p><strong>User Agent:</strong> @Request.UserAgent</p>
+        <p><strong>URL:</strong> @Request.Url</p>
+        <p><strong>Referrer:</strong> @(Request.UrlReferrer?.ToString() ?? "None")</p>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // Legacy: Log error details to console
+            console.error('Error page displayed', {
+                timestamp: '@DateTime.Now',
+                user: '@(Session["UserName"] ?? "Anonymous")',
+                url: '@Request.Url'
+            });
+            
+            // Legacy: Auto-redirect after timeout
+            setTimeout(function() {
+                if (confirm('Would you like to return to the home page?')) {
+                    window.location.href = '@Url.Action("Index", "Home")';
+                }
+            }, 10000); // 10 seconds
+        });
+    </script>
+}

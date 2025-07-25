@@ -1,0 +1,122 @@
+@{
+    ViewBag.Title = "Banking Application";
+    Layout = null; // Angular SPA uses its own layout
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Acme Bank - Banking App</title>
+    <base href="/app/">
+    
+    <!-- CSS bundles -->
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/angular-css")
+    
+    <!-- Legacy: Inline styles for Angular integration -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .loading-spinner {
+            text-align: center;
+            padding: 50px;
+        }
+        .legacy-header {
+            background: #2c3e50;
+            color: white;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="legacy-header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>🏦 Acme Bank - Online Banking</h4>
+                </div>
+                <div class="col-md-6 text-right">
+                    <span>Welcome, @ViewBag.FullName</span>
+                    <a href="@Url.Action("Logout", "Account")" class="btn btn-sm btn-warning" style="margin-left: 10px;">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Angular 7 Application Root -->
+    <div id="angular-app">
+        <app-root>
+            <!-- Legacy loading indicator -->
+            <div class="loading-spinner">
+                <h3>Loading Banking Application...</h3>
+                <p>Please wait while we load your personalized banking experience.</p>
+                <div class="progress" style="width: 300px; margin: 20px auto;">
+                    <div class="progress-bar progress-bar-striped active" role="progressbar" 
+                         style="width: 100%">
+                        Loading...
+                    </div>
+                </div>
+            </div>
+        </app-root>
+    </div>
+
+    <!-- Legacy: Pass server-side data to Angular -->
+    <script>
+        // Legacy pattern: Global variables for Angular
+        window.AcmeBankApp = {
+            user: {
+                id: @ViewBag.UserId,
+                name: '@ViewBag.UserName',
+                fullName: '@ViewBag.FullName'
+            },
+            config: {
+                maxTransferAmount: @ViewBag.MaxTransferAmount,
+                sessionTimeout: @ViewBag.SessionTimeout,
+                // Security Issue: Exposing API key to client
+                apiKey: '@ViewBag.ApiKey'
+            },
+            apiBase: '@Url.Content("~/api/")'
+        };
+        
+        console.log('Legacy .NET to Angular bridge initialized', window.AcmeBankApp);
+    </script>
+
+    <!-- Legacy: Manual script loading instead of Angular CLI -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    @Scripts.Render("~/bundles/bootstrap")
+    
+    <!-- Pre-built Angular 7 scripts (committed to source) -->
+    @Scripts.Render("~/bundles/angular-app")
+    
+    <!-- Legacy: Inline error handling -->
+    <script>
+        window.addEventListener('error', function(event) {
+            console.error('Angular App Error:', event.error);
+            
+            // Legacy: Show user-friendly error
+            document.getElementById('angular-app').innerHTML = 
+                '<div class="container"><div class="alert alert-danger">' +
+                '<h4>Application Error</h4>' +
+                '<p>The banking application failed to load. Please refresh the page or contact support.</p>' +
+                '<p><small>Error: ' + event.message + '</small></p>' +
+                '</div></div>';
+        });
+        
+        // Legacy: Heartbeat to maintain session
+        setInterval(function() {
+            $.get('@Url.Action("GetProfile", "Api")', function() {
+                // Session still active
+            }).fail(function() {
+                // Session expired
+                alert('Your session has expired. Please log in again.');
+                window.location.href = '@Url.Action("Login", "Account")';
+            });
+        }, 5 * 60 * 1000); // Every 5 minutes
+    </script>
+</body>
+</html>

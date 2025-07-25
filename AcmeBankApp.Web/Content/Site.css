@@ -1,0 +1,443 @@
+/* 
+ * Legacy Site.css - Manual CSS without SCSS/LESS preprocessing
+ * Typical of 2018-2019 MVC applications before modern tooling
+ */
+
+/* Base styles */
+body {
+    padding-top: 0px;
+    padding-bottom: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Legacy: Set padding to maintain the original Bootstrap behavior */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Legacy: Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Legacy: Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* Legacy button styling with gradients - typical 2018 design */
+.btn-primary {
+    background: linear-gradient(to bottom, #337ab7 0%, #265a88 100%);
+    border: 1px solid #2e6da4;
+    color: white;
+    text-shadow: 0 -1px 0 rgba(0,0,0,.2);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.15), 0 1px 1px rgba(0,0,0,.075);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(to bottom, #286090 0%, #204d74 100%);
+    border-color: #204d74;
+}
+
+/* Legacy: Custom header styling */
+.legacy-navbar {
+    background: linear-gradient(to bottom, #222 0%, #333 100%);
+    border-bottom: 1px solid #080808;
+    box-shadow: 0 1px 10px rgba(0,0,0,.1);
+}
+
+/* Legacy: Footer styling */
+.legacy-footer {
+    margin-top: 50px;
+    padding: 30px 0;
+    background: linear-gradient(to bottom, #f5f5f5 0%, #e8e8e8 100%);
+    border-top: 1px solid #ddd;
+}
+
+/* Legacy: Panel styling with heavy shadows and gradients */
+.panel {
+    box-shadow: 0 2px 15px rgba(0,0,0,.1);
+    border: 1px solid #ddd;
+}
+
+.panel-heading {
+    background: linear-gradient(to bottom, #f5f5f5 0%, #e8e8e8 100%);
+    border-bottom: 1px solid #ddd;
+}
+
+.panel-primary > .panel-heading {
+    background: linear-gradient(to bottom, #337ab7 0%, #2e6da4 100%);
+    border-color: #2e6da4;
+}
+
+/* Legacy: Table styling */
+.table th {
+    background: linear-gradient(to bottom, #f5f5f5 0%, #e8e8e8 100%);
+    border-bottom: 2px solid #ddd;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 11px;
+    color: #555;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+}
+
+/* Legacy: Form styling */
+.form-control {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.form-control:focus {
+    border-color: #66afe9;
+    outline: 0;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+}
+
+/* Legacy: Alert styling with gradients */
+.alert-success {
+    background: linear-gradient(to bottom, #dff0d8 0%, #c3e3b0 100%);
+    border-color: #b3df86;
+    color: #3c763d;
+}
+
+.alert-info {
+    background: linear-gradient(to bottom, #d9edf7 0%, #b7e2f0 100%);
+    border-color: #85c5e5;
+    color: #31708f;
+}
+
+.alert-warning {
+    background: linear-gradient(to bottom, #fcf8e3 0%, #f5e79e 100%);
+    border-color: #e6cc7f;
+    color: #8a6d3b;
+}
+
+.alert-danger {
+    background: linear-gradient(to bottom, #f2dede 0%, #e8b6b6 100%);
+    border-color: #d68b8b;
+    color: #a94442;
+}
+
+/* Legacy: Navigation styling */
+.navbar-brand {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.navbar-nav > li > a {
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.navbar-nav > li > a:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
+/* Legacy: Badge styling */
+.badge {
+    background: linear-gradient(to bottom, #777 0%, #555 100%);
+    color: white;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px 6px;
+}
+
+.badge-primary {
+    background: linear-gradient(to bottom, #337ab7 0%, #2e6da4 100%);
+}
+
+.badge-success {
+    background: linear-gradient(to bottom, #5cb85c 0%, #449d44 100%);
+}
+
+.badge-warning {
+    background: linear-gradient(to bottom, #f0ad4e 0%, #ec971f 100%);
+}
+
+.badge-danger {
+    background: linear-gradient(to bottom, #d9534f 0%, #c9302c 100%);
+}
+
+/* Legacy: Progress bar styling */
+.progress {
+    background: linear-gradient(to bottom, #ebebeb 0%, #f5f5f5 100%);
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+}
+
+.progress-bar {
+    background: linear-gradient(to bottom, #337ab7 0%, #2e6da4 100%);
+    box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);
+    transition: width .6s ease;
+}
+
+.progress-bar-striped {
+    background-image: linear-gradient(45deg, rgba(255,255,255,.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.15) 50%, rgba(255,255,255,.15) 75%, transparent 75%, transparent);
+    background-size: 40px 40px;
+}
+
+/* Legacy: Well styling */
+.well {
+    background: linear-gradient(to bottom, #f5f5f5 0%, #e8e8e8 100%);
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+    padding: 19px;
+    margin-bottom: 20px;
+}
+
+/* Legacy: Jumbotron styling */
+.jumbotron {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 6px;
+    padding: 60px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 20px rgba(0,0,0,.1);
+}
+
+.jumbotron h1 {
+    font-size: 48px;
+    font-weight: 300;
+    margin-bottom: 20px;
+    text-shadow: 0 1px 3px rgba(0,0,0,.3);
+}
+
+.jumbotron p {
+    font-size: 18px;
+    font-weight: 300;
+    margin-bottom: 15px;
+    text-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+
+/* Legacy: Thumbnail styling */
+.thumbnail {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 4px;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,.055);
+    transition: all .2s ease-in-out;
+}
+
+.thumbnail:hover {
+    box-shadow: 0 1px 8px rgba(0,0,0,.2);
+}
+
+/* Legacy: Media object styling */
+.media {
+    margin-top: 15px;
+}
+
+.media-object {
+    border-radius: 4px;
+}
+
+/* Legacy: List group styling */
+.list-group-item {
+    border: 1px solid #ddd;
+    background-color: #fff;
+    transition: background-color .15s ease-in-out;
+}
+
+.list-group-item:hover {
+    background-color: #f5f5f5;
+}
+
+.list-group-item.active {
+    background: linear-gradient(to bottom, #337ab7 0%, #2e6da4 100%);
+    border-color: #2e6da4;
+    color: white;
+}
+
+/* Legacy: Responsive utilities with !important */
+@media (max-width: 767px) {
+    .hidden-xs {
+        display: none !important;
+    }
+    
+    .jumbotron {
+        padding: 30px 15px;
+    }
+    
+    .jumbotron h1 {
+        font-size: 36px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .hidden-sm {
+        display: none !important;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .hidden-md {
+        display: none !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .hidden-lg {
+        display: none !important;
+    }
+}
+
+/* Legacy: Print styles */
+@media print {
+    .no-print,
+    .navbar,
+    .btn,
+    .pagination,
+    .pager {
+        display: none !important;
+    }
+    
+    .panel {
+        border: 1px solid #000;
+    }
+    
+    .table th,
+    .table td {
+        border: 1px solid #000;
+    }
+}
+
+/* Legacy: Vendor prefixes for animations */
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@-moz-keyframes spin {
+    0% { -moz-transform: rotate(0deg); }
+    100% { -moz-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.spinner {
+    -webkit-animation: spin 2s linear infinite;
+    -moz-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+/* Legacy: Custom utilities */
+.text-shadow {
+    text-shadow: 0 1px 3px rgba(0,0,0,.3);
+}
+
+.box-shadow {
+    box-shadow: 0 2px 10px rgba(0,0,0,.1);
+}
+
+.border-radius {
+    border-radius: 4px;
+}
+
+.transition {
+    transition: all 0.3s ease;
+}
+
+/* Legacy: Clearfix */
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/* Legacy: Float utilities */
+.pull-left {
+    float: left !important;
+}
+
+.pull-right {
+    float: right !important;
+}
+
+/* Legacy: Center block */
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Legacy: Show/hide utilities */
+.show {
+    display: block !important;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+/* Legacy: Text utilities */
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.text-nowrap {
+    white-space: nowrap;
+}
+
+/* Legacy: Background utilities */
+.bg-primary {
+    background-color: #337ab7;
+    color: white;
+}
+
+.bg-success {
+    background-color: #5cb85c;
+    color: white;
+}
+
+.bg-info {
+    background-color: #5bc0de;
+    color: white;
+}
+
+.bg-warning {
+    background-color: #f0ad4e;
+    color: white;
+}
+
+.bg-danger {
+    background-color: #d9534f;
+    color: white;
+}

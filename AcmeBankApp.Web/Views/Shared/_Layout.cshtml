@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Acme Bank Legacy App</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    
+    <!-- Legacy inline styles -->
+    <style>
+        .legacy-header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 10px;
+        }
+        .legacy-footer {
+            background-color: #34495e;
+            color: white;
+            padding: 20px;
+            margin-top: 50px;
+        }
+        /* Legacy: Inline CSS mixed with external stylesheets */
+        .error-message {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="legacy-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <h3>🏦 Acme Bank - Legacy Banking System</h3>
+                </div>
+                <div class="col-md-4 text-right">
+                    @if (Session["UserName"] != null)
+                    {
+                        <span>Welcome, @Session["FullName"]</span>
+                        <a href="@Url.Action("Logout", "Account")" class="btn btn-sm btn-warning">Logout</a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Login", "Account")" class="btn btn-sm btn-primary">Login</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Acme Bank", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @if (Session["UserName"] != null)
+                    {
+                        <li>@Html.ActionLink("Banking App", "Index", "App")</li>
+                        <li>@Html.ActionLink("Profile", "Profile", "Account")</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        
+        <!-- Legacy: Expose debug information in production -->
+        @if (ViewBag.Environment != "Production")
+        {
+            <div class="panel panel-info">
+                <div class="panel-heading">Debug Information</div>
+                <div class="panel-body">
+                    <small>
+                        Environment: @ViewBag.Environment<br/>
+                        Version: @ViewBag.AppVersion<br/>
+                        <!-- Security Issue: Exposing API key in HTML -->
+                        API Key: @ViewBag.BankApiKey<br/>
+                        Server Time: @DateTime.Now
+                    </small>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="legacy-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>&copy; @DateTime.Now.Year - Acme Bank. Legacy Application v1.0</p>
+                </div>
+                <div class="col-md-6 text-right">
+                    <p>Built with .NET Framework 4.8 | MVC 5.2.7 | Angular 7</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    
+    <!-- Legacy: Inline JavaScript mixed with bundled scripts -->
+    <script>
+        $(document).ready(function() {
+            // Legacy jQuery initialization
+            console.log('Acme Bank Legacy App loaded');
+            
+            // Legacy: Expose sensitive data to client-side
+            window.AcmeBankConfig = {
+                apiKey: '@ViewBag.BankApiKey',
+                environment: '@ViewBag.Environment',
+                maxTransferAmount: '@ViewBag.MaxTransferAmount'
+            };
+        });
+    </script>
+</body>
+</html>

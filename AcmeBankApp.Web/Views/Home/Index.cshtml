@@ -1,0 +1,95 @@
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<!-- Legacy HTML with inline styles and mixed patterns -->
+<div class="jumbotron" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+    <h1>Welcome to Acme Bank</h1>
+    <p class="lead">Your trusted legacy banking partner since 1995</p>
+    <p>Experience our state-of-the-art 2019 technology with Angular 7 integration!</p>
+    @if (Session["UserName"] == null)
+    {
+        <p><a href="@Url.Action("Login", "Account")" class="btn btn-primary btn-lg">Login to Banking &raquo;</a></p>
+    }
+    else
+    {
+        <p><a href="@Url.Action("Index", "App")" class="btn btn-primary btn-lg">Access Banking App &raquo;</a></p>
+    }
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>🏦 Online Banking</h2>
+        <p>
+            Access your accounts, transfer money, and pay bills with our cutting-edge 
+            Angular 7 single-page application integrated seamlessly with our legacy .NET Framework 4.8 backend.
+        </p>
+        <p><a class="btn btn-default" href="@Url.Action("Index", "App")">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>💳 Account Management</h2>
+        <p>
+            Manage your checking, savings, and credit accounts all in one place. 
+            View transaction history, check balances, and set up automatic transfers.
+        </p>
+        <p><a class="btn btn-default" href="@Url.Action("Profile", "Account")">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>🔒 Security</h2>
+        <p>
+            Your financial information is protected by our state-of-the-art 2018 security measures, 
+            including advanced authentication and data encryption.
+        </p>
+        <p><a class="btn btn-default" href="@Url.Action("About", "Home")">Learn more &raquo;</a></p>
+    </div>
+</div>
+
+<!-- Legacy: Expose system information to all users -->
+<div class="row" style="margin-top: 30px;">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">System Information</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="list-unstyled">
+                            <li><strong>Framework:</strong> .NET Framework 4.8</li>
+                            <li><strong>MVC Version:</strong> 5.2.7</li>
+                            <li><strong>Entity Framework:</strong> 6.2.0</li>
+                            <li><strong>Angular Version:</strong> 7.2.15</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="list-unstyled">
+                            <li><strong>Environment:</strong> @ViewBag.Environment</li>
+                            <li><strong>Version:</strong> @ViewBag.AppVersion</li>
+                            <li><strong>Server Time:</strong> @DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")</li>
+                            <!-- Security Issue: Exposing sensitive configuration -->
+                            <li><strong>API Key:</strong> @Html.Raw(ViewBag.BankApiKey)</li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="text-muted">
+                    <small>This legacy application demonstrates typical 2018-2019 .NET Framework patterns with integrated Angular SPA.</small>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <!-- Legacy: Inline scripts mixed with section -->
+    <script>
+        $(document).ready(function() {
+            // Legacy: AJAX call without CSRF protection
+            $('#system-info-btn').click(function() {
+                $.get('@Url.Action("SystemInfo", "Home")', function(data) {
+                    console.log('System Info:', data);
+                    alert('Check console for system information');
+                });
+            });
+        });
+    </script>
+}
